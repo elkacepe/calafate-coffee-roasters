@@ -1,0 +1,16 @@
+# Configuración mínima para la CLI de Supabase (supabase start / supabase db reset).
+project_id = "calafate-coffee-roasters"
+
+[db]
+major_version = 17
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:5173"
+enable_signup = false
+
+[auth.email]
+enable_confirmations = false

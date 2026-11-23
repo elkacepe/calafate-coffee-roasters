@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-crema font-body font-light text-cafe antialiased; }
+  h1, h2, h3 { font-variation-settings: 'SOFT' 50, 'WONK' 0; }
+  input, select, textarea, button { font-family: inherit; }
+  strong, b { @apply font-semibold; }
+}
+.num { font-variant-numeric: tabular-nums; }
