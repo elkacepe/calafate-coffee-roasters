@@ -6,7 +6,7 @@ import { useStoredState } from '../../lib/cart'
 import { useCommand } from '../../lib/commands'
 import { RULES, wholesaleKg } from '../../domain/rules'
 import { ars, fmtDay, grams, roastedLabel, MOLIENDAS, localDate } from '../../lib/format'
-import { Badge, Button, Card, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Segmented, Select, Sheet, Textarea, cx } from '../../components/ui'
+import { DateInput, Badge, Button, Card, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Segmented, Select, Sheet, Textarea, cx } from '../../components/ui'
 import { useAuth } from '../../auth/AuthProvider'
 
 export default function Comprar() {
@@ -90,7 +90,7 @@ export default function Comprar() {
         <div className="mt-2 flex justify-between font-display text-xl font-extrabold"><span>{kgTotal} kg</span><span className="num">{ars(subtotal)}</span></div>
         {kgTotal < RULES.minWholesaleKg && <Notice tone="warn" className="mt-2">El pedido mínimo es de {RULES.minWholesaleKg} kg.</Notice>}
         <div className="mt-4 space-y-3">
-          <Field label="Entrega"><Input type="date" min={tomorrow} value={fecha || tomorrow} onChange={(e) => setFecha(e.target.value)} /></Field>
+          <Field label="Entrega"><DateInput label="Entrega" disableSundays min={tomorrow} value={fecha || tomorrow} onChange={(e) => setFecha(e.target.value)} /></Field>
           <Field label="Notas"><Textarea value={notas} onChange={(e) => setNotas(e.target.value)} placeholder="Horario de recepción, etc." /></Field>
           <Notice tone="info">Al confirmar se congela el precio de cada línea y se reserva café de un lote concreto. Pagás a {RULES.paymentTermsDays} días desde la entrega.</Notice>
           <ErrorBanner error={cmd.error} onRefresh={() => { cmd.clearError(); cat.reload(); credit.reload() }} onRetry={() => send(true)} />

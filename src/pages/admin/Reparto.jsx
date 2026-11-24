@@ -5,7 +5,7 @@ import { useCommand } from '../../lib/commands'
 import { routeFits } from '../../domain/rules'
 import { grams, fmtDay, localDate } from '../../lib/format'
 import { waLink } from '../../lib/whatsapp'
-import { Badge, Button, Card, Empty, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Progress, Select, Sheet } from '../../components/ui'
+import { DateInput, Badge, Button, Card, Empty, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Progress, Select, Sheet } from '../../components/ui'
 import { OrderDetailSheet } from '../../components/OrderDetail'
 
 export default function Reparto() {
@@ -29,7 +29,7 @@ export default function Reparto() {
       <div className="flex flex-wrap items-end justify-between gap-2">
         <H1>Reparto</H1>
         <div className="flex gap-2">
-          <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} className="rounded-2xl border border-cafe/15 bg-white px-3 py-2 text-sm" />
+          <div className="w-56"><DateInput compact label="Fecha del reparto" value={fecha} onChange={(e) => setFecha(e.target.value)} /></div>
           <Button size="sm" onClick={() => setCrear(true)}>Nuevo recorrido</Button>
         </div>
       </div>

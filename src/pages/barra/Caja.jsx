@@ -102,9 +102,9 @@ export default function Caja() {
             </div>
           )}
           <div className="flex items-center gap-2">
-            <select value={metodo} onChange={(e) => setMetodo(e.target.value)} className="h-14 rounded-2xl bg-crema/10 px-3 text-crema">
-              {Object.entries(METODOS).map(([k, v]) => <option key={k} value={k} className="text-noche">{v}</option>)}
-            </select>
+            <div className="w-36 shrink-0"><Select tone="dark" label="Forma de pago" value={metodo} onChange={(e) => setMetodo(e.target.value)}>
+              {Object.entries(METODOS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+            </Select></div>
             <Button variant="accent" size="lg" className="flex-1" busy={cmd.busy} disabled={!ticket.length} onClick={cobrar}>
               {ticket.length ? `Cobrar ${ars(tot.total)}` : 'Tocá una bebida'}
             </Button>

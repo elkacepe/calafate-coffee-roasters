@@ -81,7 +81,7 @@ export function Field({ label, hint, error, children, className }) {
   return (
     <label className={cx('block', className)}>
       {label && <span className="mb-1 block text-sm font-medium text-cafe">{label}</span>}
-      {children}
+      <FieldLabelContext.Provider value={typeof label === 'string' ? label : null}>{children}</FieldLabelContext.Provider>
       {hint && !error && <span className="mt-1 block text-xs text-cafe/70">{hint}</span>}
       {error && <span className="mt-1 block text-xs font-medium text-[#b5432f]">{error}</span>}
     </label>
@@ -94,10 +94,8 @@ export function Input({ className, ...props }) {
 export function Textarea({ className, ...props }) {
   return <textarea className={cx(inputCls, 'min-h-[88px]', className)} {...props} />
 }
-const chevron = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238C5A3C'%3E%3Cpath d='M5 7l5 6 5-6z'/%3E%3C/svg%3E\")"
-export function Select({ children, className, ...props }) {
-  return <select className={cx(inputCls, 'appearance-none bg-[length:18px] bg-[right_12px_center] bg-no-repeat pr-10', className)} style={{ backgroundImage: chevron }} {...props}>{children}</select>
-}
+import { FieldLabelContext } from './Pickers'
+export { Select, DateInput, prettyDate } from './Pickers'
 
 /** Botones segmentados grandes (ideal con una mano) */
 export function Segmented({ options, value, onChange, className, size = 'md' }) {

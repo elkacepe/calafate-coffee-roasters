@@ -4,7 +4,7 @@ import { useAsync } from '../../lib/useAsync'
 import { useCommand } from '../../lib/commands'
 import { priceOn } from '../../domain/rules'
 import { ars, fmtDay, localDate, PRESENTACION } from '../../lib/format'
-import { Button, Card, ErrorBanner, Field, H1, Input, Label, Loading, Notice, Select, Sheet, cx } from '../../components/ui'
+import { DateInput, Button, Card, ErrorBanner, Field, H1, Input, Label, Loading, Notice, Select, Sheet, cx } from '../../components/ui'
 
 export default function Precios() {
   const data = useAsync(async () => {
@@ -55,7 +55,7 @@ export default function Precios() {
           <div className="space-y-3">
             <div className="text-sm">{edit.cafe.name} · {PRESENTACION[edit.presentacion]}</div>
             <Field label="Precio"><Input inputMode="numeric" value={edit.precio} onChange={(e) => setEdit({ ...edit, precio: e.target.value.replace(/\D/g, '') })} /></Field>
-            <Field label="Vigente desde"><Input type="date" min={today} value={edit.vigente_desde} onChange={(e) => setEdit({ ...edit, vigente_desde: e.target.value })} /></Field>
+            <Field label="Vigente desde"><DateInput label="Vigente desde" min={today} value={edit.vigente_desde} onChange={(e) => setEdit({ ...edit, vigente_desde: e.target.value })} /></Field>
             <ErrorBanner error={cmd.error} onRefresh={data.reload} />
             <Button className="w-full" size="lg" busy={cmd.busy} disabled={!Number(edit.precio)}
               onClick={async () => { const r = await cmd.run('actualizar_precio', { lista_id: current, cafe_id: edit.cafe.id, presentacion: edit.presentacion, precio: Number(edit.precio), vigente_desde: edit.vigente_desde }); if (r?.ok) { setEdit(null); data.reload() } }}>Programar precio</Button>

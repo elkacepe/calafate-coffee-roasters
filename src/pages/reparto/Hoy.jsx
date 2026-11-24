@@ -4,7 +4,7 @@ import { useAsync } from '../../lib/useAsync'
 import { useCommand } from '../../lib/commands'
 import { ars, grams, fmtDay, localDate, PRESENTACION, CONDICION, METODOS } from '../../lib/format'
 import { waLink } from '../../lib/whatsapp'
-import { Badge, Button, Card, Empty, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Progress, Select, Sheet, Textarea, cx } from '../../components/ui'
+import { DateInput, Badge, Button, Card, Empty, ErrorBanner, Field, H1, H2, Input, Label, Loading, LoadError, Notice, Progress, Select, Sheet, Textarea, cx } from '../../components/ui'
 
 export default function Hoy() {
   const [fecha, setFecha] = useState(localDate())
@@ -15,7 +15,7 @@ export default function Hoy() {
     <div className="space-y-4">
       <div className="flex items-end justify-between gap-3">
         <H1>Recorridos</H1>
-        <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} className="rounded-2xl border border-cafe/15 bg-white px-3 py-2 text-sm" />
+        <div className="w-48"><DateInput compact label="Día" value={fecha} onChange={(e) => setFecha(e.target.value)} /></div>
       </div>
       <div className="text-sm text-cafe/70">{fmtDay(fecha)}</div>
       {board.loading && <Loading />}

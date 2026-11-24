@@ -3,7 +3,7 @@ import { rpc } from '../../lib/supabase'
 import { useAsync } from '../../lib/useAsync'
 import { ars, grams, pctFmt, fmtDate, localDate } from '../../lib/format'
 import { toCSV, downloadCSV } from '../../lib/csv'
-import { Button, Card, H1, H2, Input, Label, Loading, LoadError, Notice, Stat, cx } from '../../components/ui'
+import { DateInput, Button, Card, H1, H2, Input, Label, Loading, LoadError, Notice, Stat, cx } from '../../components/ui'
 
 const CANAL = { barra: 'Barra', web: 'Web', mayorista: 'Mayoristas' }
 
@@ -29,9 +29,9 @@ export default function Informes() {
   return (
     <div className="space-y-5">
       <H1>Informes</H1>
-      <div className="grid grid-cols-2 gap-2 sm:w-96">
-        <Input type="date" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} />
-        <Input type="date" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} />
+      <div className="grid grid-cols-1 gap-2 sm:w-[32rem] sm:grid-cols-2">
+        <DateInput label="Desde" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} />
+        <DateInput label="Hasta" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} />
       </div>
 
       <section className="space-y-2">
